@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import { addToStoredReadList } from "../../utility/addToDb";
 
 const BooksDetails = () => {
   const { bookId } = useParams();
@@ -20,6 +21,19 @@ const BooksDetails = () => {
     yearOfPublishingf,
     rating,
   } = book;
+
+  const handleMarkAsRead = (id) => {
+    /*
+     1. understand what to store or save: => bookId
+     2. where to store
+     3. array, list, collection:
+     4. check: if the book is already in the readList.
+     5. if not, then add the book to the list
+     6. if yes, do not add the book
+
+    */
+    addToStoredReadList(id);
+  };
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row">
@@ -55,10 +69,15 @@ const BooksDetails = () => {
             <h2 className=" text-white">Rating: {rating}</h2>
           </div>
           <div className="mt-4">
-            <button className="btn btn-outline btn-accent text-white mr-4">
-              Read
+            <button
+              onClick={() => handleMarkAsRead(bookId)}
+              className="btn btn-outline btn-accent text-white mr-4"
+            >
+              Mark as Read
             </button>
-            <button className="btn btn-accent text-white">Wishlist</button>
+            <button className="btn btn-accent text-white">
+              Add to Wishlist
+            </button>
           </div>
         </div>
       </div>
