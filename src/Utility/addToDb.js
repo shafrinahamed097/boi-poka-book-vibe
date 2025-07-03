@@ -18,6 +18,8 @@ const addToStoredReadList = (id) => {
     storedList.push(id);
     const storedListStr = JSON.stringify(storedList);
     localStorage.setItem("read-list", storedListStr);
+    
+    
   }
 };
 
@@ -43,4 +45,4 @@ const addToStoredWishList = (wId) => {
   }
 };
 
-export { addToStoredReadList, addToStoredWishList };
+export { addToStoredReadList, addToStoredWishList, getStoredReadList, getStoredWishList };
